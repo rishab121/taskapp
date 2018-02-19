@@ -1,4 +1,12 @@
 # Taskapp
+Attribution -> Professor Nat Tuck class Notes.
+
+
+Design Choices Made: 
+Instead of storing whole user in the session stored only user_id, as sessions are maintained
+in cookies, By storing only user_id there will be no issue with the cookie size. Also storing the user_id 
+will give me updated tasks everytime as every page will have to make query to get user. This behavior 
+is important because other users can also assign tasks.
 
 To start your Phoenix server:
 
@@ -8,13 +16,3 @@ To start your Phoenix server:
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix

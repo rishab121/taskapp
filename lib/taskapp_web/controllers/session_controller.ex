@@ -5,10 +5,6 @@ defmodule TaskappWeb.SessionController do
     alias Taskapp.Accounts.User
   
     def create(conn, %{"name" => name}) do
-     #choice made here add things
-     # user id is the right choice here
-     # up to date version of user object if the assigned pbject gets changed
-
       user = Accounts.get_user_by_name(name)
       if user do
         conn
