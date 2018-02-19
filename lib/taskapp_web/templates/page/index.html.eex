@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>
@@ -33,4 +33,21 @@
       </li>
     </ul>
   </div>
+</div> -->
+<div class="row">
+  <div class="col">
+    <h1>Log In</h1>
+       <!-- session_path(@conn, :create) -->
+      <%= form_tag("/session", method: :post) do %>
+        <div class="form-group">
+          name
+          <input type="text" name="name" placeholder="user name" >
+        </div>
+        <!-- passwords come later -->
+        <div class="form-group">
+          <button class="btn btn-primary">Log in</button>
+          <%= link "Register", to: user_path(@conn, :new),class: "btn btn-danger" %>
+        </div>
+      <% end %>
+ </div>
 </div>

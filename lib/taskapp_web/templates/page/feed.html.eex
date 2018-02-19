@@ -1,0 +1,44 @@
+<%= if @current_user do %>
+  <div class="row">
+    <div class="col">
+      <h1> Create New Task</h1>
+      <%= render TaskappWeb.TaskView, "form.html",
+          Map.put(assigns, :action, task_path(@conn, :create)) %>
+    </div>
+  </div>
+<% end %>
+
+<h1>Your Tasks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Time taken In Mins</th>
+      <th>Task completed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= Enum.map @tasks, fn task -> %>
+  <%= if task.user_assigned_id == @current_user.id do  %>
+
+  <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.time_taken %></td>
+        <td><%= task.task_completed %></td>
+        <td class="text-right">
+        <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        </td>
+  </tr>
+    
+    
+    
+  <% end %>
+<% end %>
+  </tbody>
+</table>
