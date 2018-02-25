@@ -1,5 +1,5 @@
-export PORT=5106
+export PORT=5108
 
-cd ~/www/taskapp
+cd ~/wwww/taskapp
 ./bin/taskapp stop || true
 ./bin/taskapp start
