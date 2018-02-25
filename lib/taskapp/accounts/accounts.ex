@@ -62,6 +62,11 @@ defmodule Taskapp.Accounts do
     |> Repo.insert()
   end
 
+  def get_current_user(user_id) do
+    Repo.all(from m in User,
+    where: m.id == ^user_id)
+  end
+
   @doc """
   Updates a user.
 

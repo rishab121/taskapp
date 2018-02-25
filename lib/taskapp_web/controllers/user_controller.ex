@@ -6,7 +6,12 @@ defmodule TaskappWeb.UserController do
 
   def index(conn, _params) do
     users = Accounts.list_users()
-    render(conn, "index.html", users: users)
+    current_user = conn.assigns[:current_user]
+    #under = Taskapp.Tracker.list_tasks()
+    get_users_without_managers = Taskapp.Tracker.get_users_without_managers()
+    underlings = Taskapp.Tracker.managers_map_for(current_user.id)
+    manager = Taskapp.Tracker.get_manager_id(current_user.id)
+    render(conn, "index.html", users: users, underlings: underlings, manager: manager, get_users_without_managers: get_users_without_managers)
   end
 
   def new(conn, _params) do

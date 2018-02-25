@@ -8,6 +8,9 @@ defmodule TaskappWeb.TaskController do
   def index(conn, _params) do
     tasks = Tracker.list_tasks()
    # users = Accounts.list_users()
+    #current_user = conn.assigns[:current_user]
+    #underlings = Taskapp.Tracker.managers_map_for(current_user.id)
+    #manager = Taskapp.Tracker.get_manager_id(current_user.id)
     render(conn, "index.html", tasks: tasks)
   end
 

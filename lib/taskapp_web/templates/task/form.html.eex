@@ -6,9 +6,10 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :assign_user_with_ID, class: "control-label" %>
-    <span><%= link "View All Users", to: user_path(@conn, :index), class: "btn btn-sm btn-danger"%></span>
-    <%= text_input f, :user_assigned_id, class: "form-control" %>
+    <%= label f, :Select_User_You_Manage, class: "control-label" %>
+   <!-- <span><%= link "View All Users", to: user_path(@conn, :index), class: "btn btn-sm btn-danger"%></span> -->
+   <!-- Attribution -> https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#select/4 -->
+    <%= select f, :user_assigned_id, Enum.map(@underlings, &{&1.manages.name, &1.manages_id}), class: "form-control" %> 
     <%= error_tag f, :user_assigned_id %>
   </div>
 

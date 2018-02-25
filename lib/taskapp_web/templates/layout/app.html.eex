@@ -14,17 +14,26 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-3 offset-9">
-          <%= if @current_user do %>
-            <p>
-              Logged in as: <%= @current_user.name %> |
-              <%= link "Log Out", to: "/session", method: :delete %>
-            </p>
-          <% else %>
-            <p>Not logged in.</p>
-          <% end %>
-        </div>
+    <%= if @current_user do %>
+      <div class="col-9">
+        <p class="p-4">
+          <a href="/feed" class="btn btn-primary">Tasks</a> |
+          <a href="/users" class= "btn btn-primary">Users You Manage</a> |
+          <a href="/managers" class="btn btn-primary">Manegement</a>  
+        </p>
       </div>
+      <div class="col-3">
+        <p class="p-4">
+          Logged in as: <%= @current_user.name %> |
+          <%= link "Log Out", to: "/session", method: :delete %>
+        </p>
+      </div>
+    <% else %>
+      <div class="col-3 offset-9">
+        <p>Not logged in.</p>
+      </div>
+    <% end %>
+  </div>
       
       <%= if get_flash(@conn, :info) do %> 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

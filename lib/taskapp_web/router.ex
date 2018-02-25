@@ -11,6 +11,8 @@ defmodule TaskappWeb.Router do
   end
 
   pipeline :api do
+    # we dont fetch sessions here or get current user
+    # how to authenticate?
     plug :accepts, ["json"]
   end
 
@@ -23,11 +25,23 @@ defmodule TaskappWeb.Router do
   scope "/", TaskappWeb do
     pipe_through :browser 
     get "/", PageController, :index
+
+    resources "/managers", ManageController
+
+
     resources "/users", UserController
     resources "/tasks", TaskController
+
     post "/session", SessionController, :create
     delete "/session", SessionController, :delete
+
     get "/feed", PageController, :feed
 
+
   end
+
+  #scope "/api/v1", TaskAppWeb do
+   # pipe_through :api
+    #resources "/managers", ManageController, except: [:new, :edit]
+  #end
 end
