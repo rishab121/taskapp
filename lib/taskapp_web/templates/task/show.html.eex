@@ -25,12 +25,15 @@
     <strong>User Assigned:</strong>
     <%= @task.user_assigned.name %>
   </li>
+
   <li>
+  <strong> Time Block </strong>
   <%= for time <- Taskapp.Tracker.get_task_blocks(@task.id) do %>
+      
     <%= time.start %>
     <%= time.end %>
   <% end %>  
-  </li>
+  </li> 
 
 </ul>
    

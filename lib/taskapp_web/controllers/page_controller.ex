@@ -13,4 +13,8 @@ defmodule TaskappWeb.PageController do
     changeset = Taskapp.Tracker.change_task(%Taskapp.Tracker.Task{})
     render(conn, "feed.html", tasks: tasks, changeset: changeset, underlings: underlings, manager: manager)
   end
+  def input(conn, _params) do
+    changeset = Taskapp.Tracker.change_time_blocks(%Taskapp.Tracker.TimeBlocks{})
+    render(conn,"input.html", changeset: changeset)
+  end
 end
