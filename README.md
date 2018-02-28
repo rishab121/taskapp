@@ -11,7 +11,7 @@ is no manager.
 Choices Made: 
 1. User can assign only himself as manager to other users for whom there is no other managers.
 2. User can himself as his manager if there is no other manager of him to assign tasks.
-3. Both the manager and underling to which the task was can edit the tasks. As underling might want to update the time. But only the manager can delete the task. 
+3. Both the manager and underling can view the task. But only the manager can delete and edit the task. 
 
 
 Instead of storing whole user in the session stored only user_id, as sessions are maintained
