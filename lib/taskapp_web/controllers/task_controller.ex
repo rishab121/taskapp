@@ -47,7 +47,7 @@ defmodule TaskappWeb.TaskController do
 
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Tracker.get_task!(id)
-    users = Accounts.list_users()
+    #users = Accounts.list_users()
     case Tracker.update_task(task, task_params) do
       {:ok, task} ->
         conn

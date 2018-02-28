@@ -235,4 +235,111 @@ defmodule Taskapp.Tracker do
   def change_manage(%Manage{} = manage) do
     Manage.changeset(manage, %{})
   end
+
+  alias Taskapp.Tracker.TimeBlocks
+
+  
+  def get_task_blocks(task_id) do
+    Repo.all(from t in TimeBlocks,
+    where: t.task_assigned_id == ^task_id)
+    |> Repo.preload(:task_assigned)
+  end
+
+ 
+  
+ 
+
+  @doc """
+  Returns the list of times.
+
+  ## Examples
+
+      iex> list_times()
+      [%TimeBlocks{}, ...]
+
+  """
+  def list_times do
+    Repo.all(TimeBlocks)
+  end
+
+  @doc """
+  Gets a single time_blocks.
+
+  Raises `Ecto.NoResultsError` if the Time blocks does not exist.
+
+  ## Examples
+
+      iex> get_time_blocks!(123)
+      %TimeBlocks{}
+
+      iex> get_time_blocks!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_time_blocks!(id), do: Repo.get!(TimeBlocks, id)
+
+  @doc """
+  Creates a time_blocks.
+
+  ## Examples
+
+      iex> create_time_blocks(%{field: value})
+      {:ok, %TimeBlocks{}}
+
+      iex> create_time_blocks(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_time_blocks(attrs \\ %{}) do
+    %TimeBlocks{}
+    |> TimeBlocks.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a time_blocks.
+
+  ## Examples
+
+      iex> update_time_blocks(time_blocks, %{field: new_value})
+      {:ok, %TimeBlocks{}}
+
+      iex> update_time_blocks(time_blocks, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_time_blocks(%TimeBlocks{} = time_blocks, attrs) do
+    time_blocks
+    |> TimeBlocks.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a TimeBlocks.
+
+  ## Examples
+
+      iex> delete_time_blocks(time_blocks)
+      {:ok, %TimeBlocks{}}
+
+      iex> delete_time_blocks(time_blocks)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_time_blocks(%TimeBlocks{} = time_blocks) do
+    Repo.delete(time_blocks)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking time_blocks changes.
+
+  ## Examples
+
+      iex> change_time_blocks(time_blocks)
+      %Ecto.Changeset{source: %TimeBlocks{}}
+
+  """
+  def change_time_blocks(%TimeBlocks{} = time_blocks) do
+    TimeBlocks.changeset(time_blocks, %{})
+  end
 end

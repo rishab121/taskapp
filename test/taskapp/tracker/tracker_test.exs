@@ -126,4 +126,66 @@ defmodule Taskapp.TrackerTest do
       assert %Ecto.Changeset{} = Tracker.change_manage(manage)
     end
   end
+
+  describe "times" do
+    alias Taskapp.Tracker.TimeBlocks
+
+    @valid_attrs %{end: ~T[14:00:00.000000], start: ~T[14:00:00.000000]}
+    @update_attrs %{end: ~T[15:01:01.000000], start: ~T[15:01:01.000000]}
+    @invalid_attrs %{end: nil, start: nil}
+
+    def time_blocks_fixture(attrs \\ %{}) do
+      {:ok, time_blocks} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tracker.create_time_blocks()
+
+      time_blocks
+    end
+
+    test "list_times/0 returns all times" do
+      time_blocks = time_blocks_fixture()
+      assert Tracker.list_times() == [time_blocks]
+    end
+
+    test "get_time_blocks!/1 returns the time_blocks with given id" do
+      time_blocks = time_blocks_fixture()
+      assert Tracker.get_time_blocks!(time_blocks.id) == time_blocks
+    end
+
+    test "create_time_blocks/1 with valid data creates a time_blocks" do
+      assert {:ok, %TimeBlocks{} = time_blocks} = Tracker.create_time_blocks(@valid_attrs)
+      assert time_blocks.end == ~T[14:00:00.000000]
+      assert time_blocks.start == ~T[14:00:00.000000]
+    end
+
+    test "create_time_blocks/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tracker.create_time_blocks(@invalid_attrs)
+    end
+
+    test "update_time_blocks/2 with valid data updates the time_blocks" do
+      time_blocks = time_blocks_fixture()
+      assert {:ok, time_blocks} = Tracker.update_time_blocks(time_blocks, @update_attrs)
+      assert %TimeBlocks{} = time_blocks
+      assert time_blocks.end == ~T[15:01:01.000000]
+      assert time_blocks.start == ~T[15:01:01.000000]
+    end
+
+    test "update_time_blocks/2 with invalid data returns error changeset" do
+      time_blocks = time_blocks_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tracker.update_time_blocks(time_blocks, @invalid_attrs)
+      assert time_blocks == Tracker.get_time_blocks!(time_blocks.id)
+    end
+
+    test "delete_time_blocks/1 deletes the time_blocks" do
+      time_blocks = time_blocks_fixture()
+      assert {:ok, %TimeBlocks{}} = Tracker.delete_time_blocks(time_blocks)
+      assert_raise Ecto.NoResultsError, fn -> Tracker.get_time_blocks!(time_blocks.id) end
+    end
+
+    test "change_time_blocks/1 returns a time_blocks changeset" do
+      time_blocks = time_blocks_fixture()
+      assert %Ecto.Changeset{} = Tracker.change_time_blocks(time_blocks)
+    end
+  end
 end

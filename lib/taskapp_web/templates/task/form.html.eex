@@ -9,7 +9,7 @@
     <%= label f, :Select_User_You_Manage, class: "control-label" %>
    <!-- <span><%= link "View All Users", to: user_path(@conn, :index), class: "btn btn-sm btn-danger"%></span> -->
    <!-- Attribution -> https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#select/4 -->
-    <%= select f, :user_assigned_id, Enum.map(@underlings, &{&1.manages.name, &1.manages_id}), class: "form-control" %> 
+    <%= select f, :user_assigned_id, Enum.map(Taskapp.Tracker.managers_map_for(@current_user.id), &{&1.manages.name, &1.manages_id}), class: "form-control" %> 
     <%= error_tag f, :user_assigned_id %>
   </div>
 
@@ -36,7 +36,7 @@
     <%= checkbox f, :task_completed, class: "checkbox" %>
     <%= error_tag f, :task_completed %>
   </div>
-
+  
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>

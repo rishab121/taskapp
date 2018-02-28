@@ -25,9 +25,15 @@
     <strong>User Assigned:</strong>
     <%= @task.user_assigned.name %>
   </li>
+  <li>
+  <%= for time <- Taskapp.Tracker.get_task_blocks(@task.id) do %>
+    <%= time.start %>
+    <%= time.end %>
+  <% end %>  
+  </li>
 
 </ul>
-
+   
 <!-- 
 <span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
 -->

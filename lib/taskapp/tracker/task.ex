@@ -10,6 +10,8 @@ defmodule Taskapp.Tracker.Task do
     field :time_taken, :integer
     field :title, :string
     belongs_to :user_assigned, Taskapp.Accounts.User
+  # has_many :task_times, Taskapp.Tracker.TimeBlocks, foreign_key: :task_assigned_id
+   # has_many :times_blocks, through: [:task_times, :task_assigned]
     timestamps()
   end
 

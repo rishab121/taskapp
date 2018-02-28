@@ -40,8 +40,8 @@ defmodule TaskappWeb.Router do
 
   end
 
-  #scope "/api/v1", TaskAppWeb do
-   # pipe_through :api
-    #resources "/managers", ManageController, except: [:new, :edit]
-  #end
+  scope "/api/v1", TaskappWeb do
+    pipe_through :api
+    resources "/times", TimeBlocksController, except: [:new, :edit]
+  end 
 end
